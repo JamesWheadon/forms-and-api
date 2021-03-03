@@ -50,3 +50,8 @@ form textarea {
     align-items: center;
     max-width: 500px;
 }
+
+.card-image {
+    width: 50%;
+    height: auto
+}

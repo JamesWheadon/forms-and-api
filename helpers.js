@@ -1,10 +1,14 @@
-function appendCard(userData){
-    const card = createCard(userData)
+apiFuncs = require("./api.js")
+
+async function appendCard(userData){
+    const card = await createCard(userData)
     const cardParent = document.querySelector('#card')
     cardParent.appendChild(card)
 };
 
-function createCard(userData, imageUrl = "https://avatars.githubusercontent.com/u/71259892?s=88&v=4"){
+async function createCard(userData){
+    const url = await apiFuncs.backgroundImage(userData.eventType)
+
     let grRand = Math.floor(Math.random() * 3)
     grRand = ['red', 'blue', 'green'][grRand]
     let greeting = document.createElement('h2');
@@ -21,7 +25,8 @@ function createCard(userData, imageUrl = "https://avatars.githubusercontent.com/
     message.className = 'card-message'
 
     let image = document.createElement('img');
-    image.src = imageUrl
+    image.src = url
+    image.className = 'card-image'
 
     let bgRand = Math.floor(Math.random() * 3)
     bgRand = ['yellow', 'orange', 'pink'][bgRand]
