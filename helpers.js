@@ -5,16 +5,27 @@ function appendCard(userData){
 };
 
 function createCard(userData){
-    let greeting = document.createElement('h1');
+    let grRand = Math.floor(Math.random() * 3)
+    grRand = ['red', 'blue', 'green'][grRand]
+    let greeting = document.createElement('h2');
     greeting.textContent = userData.greeting
+    greeting.className = 'card-title'
+    greeting.style.color = grRand
 
     let eventType = document.createElement('p');
-    eventType.textContent = userData.eventType
+    eventType.textContent = `It's (your) ${userData.eventType}!`
+    eventType.className = 'card-event'
 
     let message = document.createElement('p');
     message.textContent = userData.message
+    message.className = 'card-message'
 
+    let bgRand = Math.floor(Math.random() * 3)
+    bgRand = ['yellow', 'orange', 'pink'][bgRand]
     const card = document.createElement('div');
+    card.className = 'card'
+    card.style.backgroundColor = bgRand
+    card.style.borderColor = grRand
     card.appendChild(greeting)
     card.appendChild(eventType)
     card.appendChild(message)
