@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forms & APIs</title>
-    <script defer src='bundle.js'></script>
-    <link rel="stylesheet" href="static/css/index.css">
+    <script defer src='script.js'></script>
 </head>
 <body>
     <form id="my-form">
-        <label for="name">Greeting</label>
-        <input type="text" id="name" placeholder="Enter your greeting"/>
+        <label for="name">Greeting:</label>
+        <input type="text" id="name" name="greeting" placeholder="Enter your greeting"/>
         <label for="event">What is the event:</label>
-        <select name="event" id="event">
+        <select name="event" id="event" name="event">
             <option value="birthday">Birthday</option>
             <option value="christmas">Christmas</option>
             <option value="easter">Easter</option>
         </select>
-        <textarea id="message" name="message" rows="4" cols="50"></textarea>
+        <textarea id="message" name="message" rows="4" cols="50" name="message"></textarea>
         <input type="submit" id="submit" value="Send!">
     </form>
 </body>
