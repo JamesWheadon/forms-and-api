@@ -7,5 +7,4 @@ myForm.addEventListener("submit", e => {
     let cardInfo = {'greeting' : e.target.greeting.value, 'eventType': e.target.event.value, 'message': e.target.message.value};
     helperFuncs.appendCard(cardInfo);
     helperFuncs.destroyForm();
-    apiFuncs.backgroundImage(e.target.event.value);
 })

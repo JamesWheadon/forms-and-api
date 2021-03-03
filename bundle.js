@@ -2,17 +2,18 @@
 async function backgroundImage(event){
     try {
         const accessKey = '2el08X40L0qYFrU5D9W30PUZKGVkwJ2_uL0cBrAUDOQ'
-        const url = `https://api.unsplash.com/search/photos?page=1?query=${event}`
-        const url1 = "https://api.unsplash.com/photos/?client_id=" +
-        accessKey +
-        "&query=" +
-        event;
+        // const url = `https://api.unsplash.com/search/photos?page=1?query=${event}`
+        // const url1 = "https://api.unsplash.com/photos/?client_id=" +
+        // accessKey +
+        // "&query=" +
+        // event;
+        const url1 = `https://api.unsplash.com/photos/random?client_id=${accessKey}&query="${event}"`
         //const response = await fetch(url, {method: 'get', headers: new Headers({'Authorization': '2el08X40L0qYFrU5D9W30PUZKGVkwJ2_uL0cBrAUDOQ'}),})
         const response = await fetch(url1)
-        const imagesArray = await response.json()
-        const picture = imagesArray[0].urls.full
-        console.log(picture)
-        document.body.style.backgroundImage = `url(${picture})`;
+        const image = await response.json()
+        // const picture = imagesArray[0].urls.raw
+        console.log(image)
+        return image.urls.small;
     } catch (err) {
         console.log(err)
     }
@@ -21,13 +22,17 @@ async function backgroundImage(event){
 
 module.exports = {backgroundImage}
 },{}],2:[function(require,module,exports){
-function appendCard(userData){
-    const card = createCard(userData)
+apiFuncs = require("./api.js")
+
+async function appendCard(userData){
+    const card = await createCard(userData)
     const cardParent = document.querySelector('#card')
     cardParent.appendChild(card)
 };
 
-function createCard(userData, imageUrl = "https://avatars.githubusercontent.com/u/71259892?s=88&v=4"){
+async function createCard(userData){
+    const url = await apiFuncs.backgroundImage(userData.eventType)
+
     let grRand = Math.floor(Math.random() * 3)
     grRand = ['red', 'blue', 'green'][grRand]
     let greeting = document.createElement('h2');
@@ -44,7 +49,8 @@ function createCard(userData, imageUrl = "https://avatars.githubusercontent.com/
     message.className = 'card-message'
 
     let image = document.createElement('img');
-    image.src = imageUrl
+    image.src = url
+    image.className = 'card-image'
 
     let bgRand = Math.floor(Math.random() * 3)
     bgRand = ['yellow', 'orange', 'pink'][bgRand]
@@ -68,7 +74,7 @@ function destroyForm() {
 module.exports = {
     appendCard, createCard, destroyForm
 }
-},{}],3:[function(require,module,exports){
+},{"./api.js":1}],3:[function(require,module,exports){
 helperFuncs = require("./helpers.js");
 apiFuncs = require("./api.js")
 
@@ -78,6 +84,5 @@ myForm.addEventListener("submit", e => {
     let cardInfo = {'greeting' : e.target.greeting.value, 'eventType': e.target.event.value, 'message': e.target.message.value};
     helperFuncs.appendCard(cardInfo);
     helperFuncs.destroyForm();
-    apiFuncs.backgroundImage(e.target.event.value);
 })
 },{"./api.js":1,"./helpers.js":2}]},{},[3]);
