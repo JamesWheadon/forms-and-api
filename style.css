@@ -36,3 +36,17 @@ form > * {
 form textarea {
     resize: vertical
 }
+
+/* style the card */
+.card {
+    font-family: 'comic sans MS';
+    height: auto;
+    border: solid 4px;
+    padding: 24px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 500px;
+}
