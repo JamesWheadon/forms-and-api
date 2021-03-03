@@ -4,7 +4,7 @@ function appendCard(userData){
     cardParent.appendChild(card)
 };
 
-function createCard(userData){
+function createCard(userData, imageUrl = "https://avatars.githubusercontent.com/u/71259892?s=88&v=4"){
     let grRand = Math.floor(Math.random() * 3)
     grRand = ['red', 'blue', 'green'][grRand]
     let greeting = document.createElement('h2');
@@ -20,6 +20,9 @@ function createCard(userData){
     message.textContent = userData.message
     message.className = 'card-message'
 
+    let image = document.createElement('img');
+    image.src = imageUrl
+
     let bgRand = Math.floor(Math.random() * 3)
     bgRand = ['yellow', 'orange', 'pink'][bgRand]
     const card = document.createElement('div');
@@ -28,6 +31,7 @@ function createCard(userData){
     card.style.borderColor = grRand
     card.appendChild(greeting)
     card.appendChild(eventType)
+    card.appendChild(image)
     card.appendChild(message)
 
     return card
